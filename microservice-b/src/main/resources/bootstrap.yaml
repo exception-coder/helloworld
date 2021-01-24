@@ -1,0 +1,15 @@
+spring:
+  cloud:
+    nacos:
+      # nacos 服务地址
+      server-addr: 47.106.123.217:8848
+      config:
+        # 命名空间 此处用作环境隔离，即开发、测试、生产环境
+        namespace: dev
+        # 组 此处用于集群隔离
+        group: HELLOWORLD
+        file-extension: yaml
+      discovery:
+        namespace: dev
+        group: HELLOWORLD
+        ip: 127.0.0.1

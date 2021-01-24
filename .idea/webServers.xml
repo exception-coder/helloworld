@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="be9b4c6b-723f-441f-9bb3-d7b09eece449" name="阿里云2">
+        <fileTransfer accessType="SFTP" host="k8s-node1" port="22" sshConfigId="df8f036b-4868-4d34-b533-260b74f9f1d9" sshConfig="root@k8s-node1:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+      <webServer id="545d5c8b-4763-4fe5-b55c-3306cde8b588" name="阿里云3">
+        <fileTransfer accessType="SFTP" host="k8s-node2" port="22" sshConfigId="a3f7ef27-c5a2-4488-8051-69929998b67c" sshConfig="root@k8s-node2:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

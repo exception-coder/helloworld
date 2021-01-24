@@ -1,0 +1,8 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: microservice-b
+
+server:
+  port: ${random.int[8081,9081]}

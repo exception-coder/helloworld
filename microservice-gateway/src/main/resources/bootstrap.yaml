@@ -1,0 +1,44 @@
+spring:
+  profiles:
+    active: dev
+
+---
+
+spring:
+  profiles: dev
+  cloud:
+    inetutils:
+      ignoredInterfaces: ['VMware.*']
+      preferredNetworks: ['192.16']
+      use-only-site-local-interfaces: true
+    discovery:
+      locator:
+        enabled: true
+    gateway:
+      routes:
+        - id: microservice-a
+          uri: lb://microservice-a
+          predicates:
+            - Path=/microservice-a/**
+          filters:
+            # 关键在下面一句，值为true则开启认证，false则不开启
+            # 这种配置方式和spring cloud gateway内置的GatewayFilterFactory一致
+            - Authorize=true
+            # 转发过滤前缀个数
+#           - StripPrefix=2
+    nacos:
+      # nacos 服务地址
+      server-addr: nacos.1278.xin
+      config:
+        # 命名空间 此处用作环境隔离，即开发、测试、生产环境
+        namespace: dev
+        # 组 此处用于集群隔离
+        group: HELLOWORLD
+        file-extension: yaml
+      discovery:
+        namespace: dev
+        group: HELLOWORLD
+        # 服务注册 ip 地址
+        ip: 127.0.0.1
+
+

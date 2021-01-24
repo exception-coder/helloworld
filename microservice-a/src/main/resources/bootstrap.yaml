@@ -1,0 +1,40 @@
+spring:
+  cloud:
+    sentinel:
+      transport:
+        dashboard: sentinel.1278.xin
+        # sentinel api 客户端ip地址
+        clientIp: 535a34848d8a.ngrok.io
+#        clientIp: 127.0.0.1
+        # sentinel api 客户端端口
+        port: 80
+      # 禁用懒加载
+      eager: true
+      datasource:
+        ds:
+          nacos:
+            server-addr: nacos.1278.xin
+            dataId: ${spring.application.name}-flow-rules
+            groupId: SENTINEL_GROUP
+            namespace: public
+            rule-type: flow
+    nacos:
+      # nacos 服务地址
+      server-addr: nacos.1278.xin
+      config:
+        # 命名空间 此处用作环境隔离，即开发、测试、生产环境
+        namespace: dev
+        # 组 此处用于集群隔离
+        group: HELLOWORLD
+        file-extension: yaml
+      discovery:
+        namespace: dev
+        group: HELLOWORLD
+        ip: 127.0.0.1
+
+# feign 配置
+feign:
+  okhttp:
+    enabled: true
+server:
+  port: 8082
