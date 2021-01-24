@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.zhongkerd:spring-cloud-start-zhongkerd-commons:1.1-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/zhongkerd/spring-cloud-start-zhongkerd-commons/1.1-SNAPSHOT/spring-cloud-start-zhongkerd-commons-1.1-20210106.012401-37.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/zhongkerd/spring-cloud-start-zhongkerd-commons/1.1-SNAPSHOT/spring-cloud-start-zhongkerd-commons-1.1-20210106.012401-37-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/zhongkerd/spring-cloud-start-zhongkerd-commons/1.1-SNAPSHOT/spring-cloud-start-zhongkerd-commons-1.1-20210106.012401-37-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

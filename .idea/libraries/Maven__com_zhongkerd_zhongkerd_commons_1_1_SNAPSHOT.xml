@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.zhongkerd:zhongkerd-commons:1.1-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/zhongkerd/zhongkerd-commons/1.1-SNAPSHOT/zhongkerd-commons-1.1-20210105.141057-13.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/zhongkerd/zhongkerd-commons/1.1-SNAPSHOT/zhongkerd-commons-1.1-20210105.141057-13-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/zhongkerd/zhongkerd-commons/1.1-SNAPSHOT/zhongkerd-commons-1.1-20210105.141057-13-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
