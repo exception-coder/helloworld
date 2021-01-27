@@ -1,5 +1,7 @@
 package cn.helloworld.microservicea.framework.db.jpa.tdengine;
 
+import com.alibaba.druid.pool.DruidDataSource;
+import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
 import com.zhongkerd.cloud.commons.framework.jpa.BaseRepositoryImpl;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
@@ -33,6 +35,17 @@ import javax.sql.DataSource;
         repositoryBaseClass = BaseRepositoryImpl.class
 )
 public class TdengineDbConfig {
+
+
+
+    @Primary
+    @Bean(name = "tdengineDataSource")
+    @ConfigurationProperties("spring.datasource.druid.tdengine")
+    public DataSource tdengineDataSource(){
+        DruidDataSource druidDataSource = DruidDataSourceBuilder.create().build();
+        return druidDataSource;
+    }
+
 
     @Primary
     @Bean(name = "tdengineJpaProperties")

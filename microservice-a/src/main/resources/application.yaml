@@ -13,6 +13,12 @@ spring:
           dialect: org.hibernate.dialect.MySQL57Dialect
   datasource:
     druid:
+      mysql:
+        dev:
+          driver-class-name: com.mysql.jdbc.Driver
+          url: jdbc:mysql://1278.xin:3306/dev?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai&useSSL=false
+          username: root
+          password: mysqlP@ssw0RD2020
       tdengine:
         driver-class-name: com.taosdata.jdbc.rs.RestfulDriver
         url: jdbc:TAOS-RS://47.75.196.191:6041/db?user=dev&password=tddevP@ssw0RD
