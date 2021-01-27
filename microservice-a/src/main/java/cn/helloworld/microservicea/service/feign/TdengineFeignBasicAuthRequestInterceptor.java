@@ -12,6 +12,6 @@ public class TdengineFeignBasicAuthRequestInterceptor implements RequestIntercep
 
     @Override
     public void apply(RequestTemplate template) {
-        template.header("Authorization"," Basic ZGV2OnRkZGV2UEBzc3cwUkQ=");
+        template.header("Authorization","Basic ZGV2OnRkZGV2UEBzc3cwUkQ=");
     }
 }

@@ -21,7 +21,7 @@ import javax.sql.DataSource;
  * @author zhangkai
  */
 @Configuration
-@MapperScan(basePackages = "cn.helloworld.microservicea.dao.mybatis.mapper.dev", sqlSessionTemplateRef  = "devSqlSessionTemplate")
+@MapperScan(basePackages = "cn.helloworld.microservicea.mybatis.plus.generator.tenant.mapper", sqlSessionTemplateRef  = "devSqlSessionTemplate")
 public class DevDataSourceConfig {
 
 

@@ -1,5 +1,6 @@
 package cn.helloworld.microservicea;
 
+import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
@@ -42,7 +43,7 @@ public class MbatisCodeGenerator {
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
 //        String projectPath = System.getProperty("user.dir");
-        String projectPath = "/Users/zhangkai/Desktop/helloworld/microservice-a";
+        String projectPath = "D:\\Users\\zhangkai\\IdeaProjects\\helloworld\\microservice-a";
         gc.setOutputDir(projectPath + "/src/main/java");
         gc.setAuthor("泡泡熊");
         gc.setOpen(false);
@@ -53,16 +54,18 @@ public class MbatisCodeGenerator {
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
         dsc.setUrl("jdbc:mysql://1278.xin:3306/dev?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai&useSSL=false");
-        // dsc.setSchemaName("public");
+        dsc.setSchemaName("public");
         dsc.setDriverName("com.mysql.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("mysqlP@ssw0RD2020");
+
         mpg.setDataSource(dsc);
 
         // 包配置
         PackageConfig pc = new PackageConfig();
-        pc.setModuleName("dev");
-        pc.setParent("cn.helloworld.microsevicea");
+        // 生成包路径 parent.moduleName cn.helloworld.microservicea.mybatis.plus.generator.${moduleName}
+        pc.setModuleName(scanner("模块名"));
+        pc.setParent("cn.helloworld.microservicea.mybatis.plus.generator");
         mpg.setPackageInfo(pc);
 
         // 自定义配置
