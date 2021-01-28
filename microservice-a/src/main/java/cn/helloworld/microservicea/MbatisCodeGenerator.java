@@ -37,13 +37,13 @@ public class MbatisCodeGenerator {
     }
 
     public static void main(String[] args) {
+
         // 代码生成器
         AutoGenerator mpg = new AutoGenerator();
 
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
-//        String projectPath = System.getProperty("user.dir");
-        String projectPath = "D:\\Users\\zhangkai\\IdeaProjects\\helloworld\\microservice-a";
+        String projectPath = System.getProperty("user.dir")+"/microservice-a";
         gc.setOutputDir(projectPath + "/src/main/java");
         gc.setAuthor("泡泡熊");
         gc.setOpen(false);
@@ -91,6 +91,8 @@ public class MbatisCodeGenerator {
                 return projectPath + "/src/main/resources/mybatis/mapper/dev/" + pc.getModuleName()
                         + "/" + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
             }
+
+
         });
         /*
         cfg.setFileCreate(new IFileCreate() {

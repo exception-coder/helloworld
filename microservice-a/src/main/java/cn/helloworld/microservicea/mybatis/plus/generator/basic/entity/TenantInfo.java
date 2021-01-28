@@ -1,11 +1,8 @@
-package cn.helloworld.microservicea.mybatis.plus.generator.tenant.entity;
+package cn.helloworld.microservicea.mybatis.plus.generator.basic.entity;
 
-import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-
-import javax.persistence.Entity;
 
 /**
  * <p>
@@ -13,12 +10,11 @@ import javax.persistence.Entity;
  * </p>
  *
  * @author 泡泡熊
- * @since 2021-01-27
+ * @since 2021-01-28
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@TableName("tenant_info")
-public class Info implements Serializable {
+public class TenantInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
