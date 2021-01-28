@@ -25,14 +25,6 @@ import javax.sql.DataSource;
 public class DevDataSourceConfig {
 
 
-
-    @Bean(name = "devDataSource")
-    @ConfigurationProperties("spring.datasource.druid.mysql.dev")
-    public DataSource devDataSource(){
-        DruidDataSource druidDataSource = DruidDataSourceBuilder.create().build();
-        return druidDataSource;
-    }
-
     @Bean(name = "devSqlSessionFactory")
     @Primary
     public SqlSessionFactory devSqlSessionFactory(@Qualifier("devDataSource") DataSource dataSource) throws Exception {

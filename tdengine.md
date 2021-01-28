@@ -19,9 +19,9 @@ TDengine社区版是一开源版本，采用的是AGPL许可证，是一个处�
 
 因资源限制，暂时选用2台主机构建集群。生产遵守2n+1原则，3台起步
 
-<font color="#f00">注意检查并打开TCP/UDP 端口6030-6042的访问权限</font> 
+<font color="#f00">注意检查并打开TCP/UDP 端口6030-6042的访问权限</font>
 
-<font color="#f00">注意文件路径及指令执行路径</font> 
+<font color="#f00">注意文件路径及指令执行路径</font>
 
 | server name         | hostname  | ip            |
 | ------------------- | --------- | ------------- |
@@ -34,9 +34,9 @@ TDengine社区版是一开源版本，采用的是AGPL许可证，是一个处�
 
 编辑 tdengine 配置文件 `/root/dockerApps/tdengine/etc/taos/taos.cfg`
 
-<font color="#f00">一定要修改的参数是firstEp和fqdn。在每个数据节点，firstEp需全部配置成一样，但fqdn一定要配置成其所在数据节点的值。其他参数可不做任何修改，除非你很清楚为什么要修改</font> 
+<font color="#f00">一定要修改的参数是firstEp和fqdn。在每个数据节点，firstEp需全部配置成一样，但fqdn一定要配置成其所在数据节点的值。其他参数可不做任何修改，除非你很清楚为什么要修改</font>
 
-<font color="#f00">k8s-node1</font> `taos.cfg` 配置文件 
+<font color="#f00">k8s-node1</font> `taos.cfg` 配置文件
 
 ```cfg
 ########################################################
@@ -313,7 +313,7 @@ TDengine社区版是一开源版本，采用的是AGPL许可证，是一个处�
 # retrieveBlockingModel    0
 ```
 
-<font color="#f00">k8s-node2</font> `taos.cfg` 配置文件 
+<font color="#f00">k8s-node2</font> `taos.cfg` 配置文件
 
 <font color="#f00">仅显示相对 k8s-node1 差异步分，其余部分保持一致</font>
 

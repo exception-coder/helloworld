@@ -38,13 +38,7 @@ public class TdengineDbConfig {
 
 
 
-    @Primary
-    @Bean(name = "tdengineDataSource")
-    @ConfigurationProperties("spring.datasource.druid.tdengine")
-    public DataSource tdengineDataSource(){
-        DruidDataSource druidDataSource = DruidDataSourceBuilder.create().build();
-        return druidDataSource;
-    }
+
 
 
     @Primary
