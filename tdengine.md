@@ -404,6 +404,8 @@ $ cd /root/dockerApps/tdengine/
 
 #### RESTful Connector
 
+##### curl 请求
+
 ```sh
 # 获取授权码
 curl http://k8s-node1:6041/rest/login/root/taosdata     
@@ -414,9 +416,82 @@ curl -H 'Authorization: Basic ZGV2OnRkZGV2UEBzc3cwUkQ=' -d 'create database db' 
 {"status":"succ","head":["affected_rows"],"data":[[0]],"rows":0} 
 ```
 
-#### 基于 RESTful Connector 整合 feign
+##### 基于 RESTful Connector 整合 feign
+
+#### Java Connector
+
+##### JDBC-JNI和JDBC-RESTful的对比
+
+| 对比项                           | JDBC-JNI                             | JDBC-RESTful |
+| -------------------------------- | ------------------------------------ | ------------ |
+| 支持的操作系统                   | linux、windows                       | 全平台       |
+| 是否需要安装 client              | 需要                                 | 不需要       |
+| server 升级后是否需要升级 client | 需要                                 | 不需要       |
+| 写入性能                         | JDBC-RESTful 是 JDBC-JNI 的 50%～90% |              |
+| 查询性能                         | JDBC-RESTful 与 JDBC-JNI 没有差别    |              |
+
+##### JDBC-JNI 连接方式使用
+
+###### 安装本地函数库
+
+使用 JDBC-JNI 的 driver，taos-jdbcdriver 驱动包时需要依赖系统对应的本地函数库。
+
+taos.dll 在 windows 系统中安装完客户端之后，驱动包依赖的 taos.dll 文件会自动拷贝到系统默认搜索路径 C:/Windows/System32 下，同样无需要单独指定。
+
+windows 系统客户端下载地址 ：
+
+[windows客户端]: https://www.taosdata.com/cn/all-downloads/#TDengine-Windows-Client
+
+###### Spring Boot 工程中使用 tdengine 实战
+
+maven `pom.xml` 添加数据库驱动包
+
+```xml
+<dependency>
+            <groupId>com.taosdata.jdbc</groupId>
+            <artifactId>taos-jdbcdriver</artifactId>
+            <version>2.0.18</version>
+        </dependency>
+```
+
+使用 druid 连接池创建数据源
+
+ 数据源配置类 `cn.helloworld.microservicea.framework.db.DataSourceConfig`
+
+```java
+@Configuration
+public class DataSourceConfig {
+
+    @Primary
+    @Bean(name = "tdengineDataSource")
+    @ConfigurationProperties("spring.datasource.druid.tdengine.jni")
+    public DataSource tdengineDataSource(){
+        DruidDataSource druidDataSource = DruidDataSourceBuilder.create().build();
+        return druidDataSource;
+    }
+
+}
+```
+
+`application.yaml` 添加数据源相关属性配置
+
+```yaml
+spring:
+  datasource:
+    druid:
+      tdengine:
+        jni:
+          driver-class-name: com.taosdata.jdbc.TSDBDriver
+          url: jdbc:TAOS://k8s-node1:6030/db
+          username: dev
+          password: tddevP@ssw0RD
+```
 
 
+
+
+
+##### JDBC-RESTful
 
 ### 参考引用
 

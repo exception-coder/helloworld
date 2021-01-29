@@ -20,10 +20,16 @@ spring:
           username: root
           password: mysqlP@ssw0RD2020
       tdengine:
-        driver-class-name: com.taosdata.jdbc.rs.RestfulDriver
-        url: jdbc:TAOS-RS://47.75.196.191:6041/db?user=dev&password=tddevP@ssw0RD
-        username: dev
-        password: tddevP@ssw0RD
+        jni:
+          driver-class-name: com.taosdata.jdbc.TSDBDriver
+          url: jdbc:TAOS://k8s-node1:6030/db
+          username: dev
+          password: tddevP@ssw0RD
+        restful:
+          driver-class-name: com.taosdata.jdbc.rs.RestfulDriver
+          url: jdbc:TAOS-RS://k8s-node1:6041/db?user=dev&password=tddevP@ssw0RD
+          username: dev
+          password: tddevP@ssw0RD
 
 logging:
   level:
