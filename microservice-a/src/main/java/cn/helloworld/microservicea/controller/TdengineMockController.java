@@ -74,30 +74,6 @@ public class TdengineMockController {
         preparedStatement.execute();
 
 
-// Create a QueryRunner that will use connections from
-// the given DataSource
-        QueryRunner run = new QueryRunner(tdengineDataSource);
-
-//        run.insert("INSERT INTO dev.tenant_info (account, pwd, id, private_key, public_key, tenant_id, tenant_name) VALUES (?, ?, ?, ?, ?, ?, ?)",(ResultSet rs)->
-//             "success"
-//        ,"zhangkai", DigestUtil.md5Hex("zhangkai2021"),1,rsa.getPrivateKeyBase64(),rsa.getPublicKeyBase64(),"zhangk","泡泡熊" );
-// Execute the query and get the results back from the handler
-        Map<String,Object> resultMap = run.query(
-                "select * from tb", (ResultSet rs)->{
-                    if (!rs.next()) {
-                        return null;
-                    }
-                    Map<String,Object> rsMap = new HashMap<>(9);
-
-                    ResultSetMetaData meta = rs.getMetaData();
-                    for (int i =0;i<meta.getColumnCount();i++){
-                        rsMap.put(meta.getColumnName(i),rs.getObject(i));
-                    }
-                    return rsMap;
-                });
-
-        System.out.printf(JSON.toJSONString(resultMap));
-
         tdengineService.restSql("select * from tb");
 
         return tenantInfoMapper.findAll();
