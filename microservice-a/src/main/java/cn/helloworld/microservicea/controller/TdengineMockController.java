@@ -74,7 +74,7 @@ public class TdengineMockController {
         preparedStatement.execute();
 
 
-        tdengineService.restSql("select * from tb");
+//        tdengineService.restSql("select * from tb");
 
         return tenantInfoMapper.findAll();
 
