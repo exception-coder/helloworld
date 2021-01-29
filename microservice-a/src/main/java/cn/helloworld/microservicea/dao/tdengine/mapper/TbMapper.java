@@ -11,6 +11,11 @@ import java.util.Map;
 @Mapper
 public interface TbMapper {
 
+    /**
+     * 检索 tb 表所有记录
+     *
+     * @return
+     */
     @Select("select * from tb")
     Map<String,Object> findAll();
 
