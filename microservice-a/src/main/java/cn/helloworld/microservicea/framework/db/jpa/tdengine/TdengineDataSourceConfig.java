@@ -34,7 +34,7 @@ import javax.sql.DataSource;
         transactionManagerRef = "tdengineTransactionManager",
         repositoryBaseClass = BaseRepositoryImpl.class
 )
-public class TdengineDbConfig {
+public class TdengineDataSourceConfig {
 
 
 
@@ -71,7 +71,7 @@ public class TdengineDbConfig {
     }
 
     @Primary
-    @Bean(name = "tdengineTransactionManager")
+    @Bean(name = "tdengineJpaTransactionManager")
     public PlatformTransactionManager transactionManager(@Qualifier("tdengineEntityManagerFactory") EntityManagerFactory factory) {
         return new JpaTransactionManager(factory);
     }

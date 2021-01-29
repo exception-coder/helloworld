@@ -1,20 +1,13 @@
 package cn.helloworld.microservicea.controller;
 
+import cn.helloworld.microservicea.dao.tdengine.mapper.TbMapper;
 import cn.helloworld.microservicea.service.feign.TdengineService;
-import cn.hutool.crypto.SecureUtil;
 import cn.hutool.crypto.asymmetric.RSA;
 import cn.hutool.crypto.digest.DigestUtil;
-import cn.hutool.crypto.digest.MD5;
 import com.alibaba.fastjson.JSON;
-import com.taosdata.jdbc.TSDBConnection;
 import com.taosdata.jdbc.TSDBDriver;
 import lombok.AllArgsConstructor;
 import org.apache.commons.dbutils.QueryRunner;
-import org.apache.commons.dbutils.ResultSetHandler;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.mybatis.spring.SqlSessionFactoryBean;
-import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,11 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.sql.DataSource;
 import java.math.BigDecimal;
-import java.security.AlgorithmConstraints;
-import java.security.spec.RSAKeyGenParameterSpec;
 import java.sql.*;
 import java.util.*;
-import java.util.Date;
 
 /**
  * @author zhangkai
@@ -42,6 +32,8 @@ public class TdengineMockController {
     private final TdengineService tdengineService;
 
     private final DataSourceTransactionManager dataSourceTransactionManager;
+
+    private final TbMapper tenantInfoMapper;
 
     @GetMapping("/mock")
     private Object mock() throws SQLException, ClassNotFoundException {
@@ -106,7 +98,9 @@ public class TdengineMockController {
 
         System.out.printf(JSON.toJSONString(resultMap));
 
-       return  tdengineService.restSql("select * from tb");
+        tdengineService.restSql("select * from tb");
+
+        return tenantInfoMapper.findAll();
 
     }
 

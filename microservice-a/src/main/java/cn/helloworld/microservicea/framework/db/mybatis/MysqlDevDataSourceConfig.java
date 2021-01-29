@@ -18,7 +18,7 @@ import javax.sql.DataSource;
  */
 @Configuration
 @MapperScan(basePackages = "cn.helloworld.microservicea.mybatis.plus.generator.basic.mapper", sqlSessionTemplateRef  = "devSqlSessionTemplate")
-public class DevDataSourceConfig {
+public class MysqlDevDataSourceConfig {
 
 
     @Bean(name = "devSqlSessionFactory")
@@ -26,7 +26,7 @@ public class DevDataSourceConfig {
     public SqlSessionFactory devSqlSessionFactory(@Qualifier("devDataSource") DataSource dataSource) throws Exception {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource);
-        bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:mybatis/mapper/dev/*.xml"));
+        bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:mybatis/mapper/mysql/dev/*.xml"));
         return bean.getObject();
     }
 
