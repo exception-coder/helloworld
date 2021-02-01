@@ -1,6 +1,5 @@
 package cn.helloworld.microservicea.service.feign;
 
-import feign.Headers;
 import feign.Logger;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.context.annotation.Bean;
