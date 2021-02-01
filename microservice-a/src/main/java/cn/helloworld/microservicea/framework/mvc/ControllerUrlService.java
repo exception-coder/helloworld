@@ -70,10 +70,8 @@ public class ControllerUrlService {
                             ApiDTO apiDTO = getRequestMappingDerivedClass(method);
                             // 只解析 `RequestMapping`及其派生注解声明的方法
                             if (apiDTO != null) {
-                                log.info("contorller path:{}", atomicPath.get()==null?apiDTO.getPath()[0]:atomicPath.get()+apiDTO.getPath()[0]);
+                                log.info("controller path:{}", atomicPath.get()==null?apiDTO.getPath()[0]:atomicPath.get()+apiDTO.getPath()[0]);
                             }
-
-
                         }
                     }
                 }
