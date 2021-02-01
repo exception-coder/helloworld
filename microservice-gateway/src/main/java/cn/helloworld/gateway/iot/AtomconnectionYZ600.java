@@ -1,6 +1,5 @@
 package cn.helloworld.gateway.iot;
 
-import cn.helloworld.gateway.SmartDeviceNettyServerHandler;
 import cn.helloworld.gateway.dto.iot.atomconnection.yz600.AddressDTO;
 import cn.hutool.core.util.NumberUtil;
 import io.netty.buffer.Unpooled;
@@ -18,13 +17,21 @@ import java.math.BigDecimal;
 @Slf4j
 public class AtomconnectionYZ600 {
 
-    // 终端心率上传报文 标识
+    /**
+     * 终端心率上传报文 标识
+     */
     private final static String HEART_DATA_CODE = "heart";
-    // 上传体温数据报文 标识
+    /**
+     * 上传体温数据报文 标识
+     */
     private final static String TEMP_DATA_CODE = "temp";
-    // 位置数据上报报文 标识
+    /**
+     * 位置数据上报报文 标识
+     */
     private final static String UD_DATA_CODE = "UD";
-    // 链路保持报文 标识
+    /**
+     * 链路保持报文 标识
+      */
     private final static String KA_DATA_CODE = "KA";
 
 
