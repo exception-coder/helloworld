@@ -39,49 +39,49 @@ public class ControllerUrlService {
     public void applicationRunListener(ApplicationStartedEvent event) {
 
 
-            // 从 `ApplicationContext` 获取所有包含 `Controller` 注解的类
-            Map<String, Object> controllers = event.getApplicationContext().getBeansWithAnnotation(Controller.class);
-            // `Controller` 对象集合
-            List<Object> list = Lists.newArrayList();
-            controllers.forEach((controllerKey, controller) -> {
+        // 从 `ApplicationContext` 获取所有包含 `Controller` 注解的类
+        Map<String, Object> controllers = event.getApplicationContext().getBeansWithAnnotation(Controller.class);
+        // `Controller` 对象集合
+        List<Object> list = Lists.newArrayList();
+        controllers.forEach((controllerKey, controller) -> {
 
-                        // 判断当前`controller`是否存在`Controller`集合中 存在则表示已经处理 不再进行处理
-                        if (!list.contains(controller)) {
-                            list.add(controller);
+                    // 判断当前`controller`是否存在`Controller`集合中 存在则表示已经处理 不再进行处理
+                    if (!list.contains(controller)) {
+                        list.add(controller);
 
-                            RequestMapping requestMapping = controller.getClass().getAnnotation(RequestMapping.class);
+                        RequestMapping requestMapping = controller.getClass().getAnnotation(RequestMapping.class);
 
-                            // 完整的 controller 路径
-                            AtomicReference<String> atomicPath = new AtomicReference<>();
-                            // TODO: 2021/2/1 路径可为路径数组 暂时只获取第一个路径
-                            Arrays.stream(requestMapping.value())
-                                    .findFirst()
-                                    .ifPresent(path -> atomicPath.set(path));
+                        // 完整的 controller 路径
+                        AtomicReference<String> atomicPath = new AtomicReference<>();
+                        // TODO: 2021/2/1 路径可为路径数组 暂时只获取第一个路径
+                        Arrays.stream(requestMapping.value())
+                                .findFirst()
+                                .ifPresent(path -> atomicPath.set(path));
 
-                            Method[] methods = ReflectionUtils.getAllDeclaredMethods(controller.getClass());
+                        Method[] methods = ReflectionUtils.getAllDeclaredMethods(controller.getClass());
 
-                            for (Method method : methods) {
-                                // 获取方法上的 `org.springframework.web.bind.annotation.RequestMapping` 注解及其派生注解
-                                RequestMapping methodRequestMapping = getRequestMappingDerivedClass(method);
+                        for (Method method : methods) {
+                            // 获取方法上的 `org.springframework.web.bind.annotation.RequestMapping` 注解及其派生注解
+                            RequestMapping methodRequestMapping = getRequestMappingDerivedClass(method);
 
-                                // 只解析 `RequestMapping`及其派生注解声明的方法
-                                if (methodRequestMapping != null) {
-                                    Arrays.stream(methodRequestMapping.value())
-                                            .findFirst()
-                                            .ifPresent(path -> atomicPath.set(atomicPath.get()==null?path:atomicPath.get()+path));
-                                    log.info("contorller path:{}",atomicPath.get());
-                                }
-
-
+                            // 只解析 `RequestMapping`及其派生注解声明的方法
+                            if (methodRequestMapping != null) {
+                                Arrays.stream(methodRequestMapping.value())
+                                        .findFirst()
+                                        .ifPresent(path -> atomicPath.set(atomicPath.get() == null ? path : atomicPath.get() + path));
+                                log.info("contorller path:{}", atomicPath.get());
                             }
+
+
                         }
                     }
+                }
 
-            );
+        );
     }
 
 
-    private RequestMapping getRequestMappingDerivedClass(Method method){
+    private RequestMapping getRequestMappingDerivedClass(Method method) {
         RequestMapping requestMapping = method.getAnnotation(RequestMapping.class);
         if (requestMapping == null) {
             // 尝试从 `RequestMapping` 派生注解中获取 `RequestMapping` 注解
@@ -93,8 +93,8 @@ public class ControllerUrlService {
                     return requestMapping;
                 }
             }
-        }else{
-            return requestMapping;
         }
+        return requestMapping;
+
     }
 }
