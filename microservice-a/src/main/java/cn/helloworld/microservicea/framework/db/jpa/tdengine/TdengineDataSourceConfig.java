@@ -36,11 +36,6 @@ import javax.sql.DataSource;
 )
 public class TdengineDataSourceConfig {
 
-
-
-
-
-
     @Primary
     @Bean(name = "tdengineJpaProperties")
     @ConfigurationProperties(prefix = "spring.jpa.tdengine")

@@ -1,8 +1,10 @@
 package cn.helloworld.microservicea.dao.tdengine.mapper;
 
+import cn.helloworld.microservicea.entity.tdengine.Tb;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -17,6 +19,6 @@ public interface TbMapper {
      * @return
      */
     @Select("select * from tb")
-    Map<String,Object> findAll();
+    List<Tb> findAll();
 
 }

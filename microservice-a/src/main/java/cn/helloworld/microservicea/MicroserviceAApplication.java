@@ -12,11 +12,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
 /**
+ * `@EnableFeignClients` 开启 feign 扫描支持
  * @author zhangkai
- */
-
-/**
- * 开启 feign 扫描支持
  */
 @EnableFeignClients
 @EnableConfigurationProperties(NacosProperties.class)
@@ -33,8 +30,7 @@ public class MicroserviceAApplication {
 //    }
 
     @Bean
-    @ConditionalOnBean(RestTemplate.class)
-    public ControllerUrlService apiDocClientService(){
+    public ControllerUrlService controllerUrlService(){
         return new ControllerUrlService();
     }
 
