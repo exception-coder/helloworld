@@ -5,10 +5,12 @@ import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ReflectionUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.List;
@@ -21,6 +23,14 @@ import java.util.concurrent.atomic.AtomicReference;
  */
 @Slf4j
 public class ControllerUrlService {
+
+    // `RequestMapping` 派生注解集合
+    private static final List<Class> REQUESTMAPPING_DERIVED = Lists.newArrayList(GetMapping.class,
+            PutMapping.class,
+            DeleteMapping.class,
+            PatchMapping.class,
+            PostMapping.class);
+
 
     /**
      * @param event
@@ -51,8 +61,8 @@ public class ControllerUrlService {
                             Method[] methods = ReflectionUtils.getAllDeclaredMethods(controller.getClass());
 
                             for (Method method : methods) {
-                                // 获取方法上的 `org.springframework.web.bind.annotation.RequestMapping` 注解
-                                RequestMapping methodRequestMapping = method.getAnnotation(RequestMapping.class);
+                                // 获取方法上的 `org.springframework.web.bind.annotation.RequestMapping` 注解及其派生注解
+                                RequestMapping methodRequestMapping = getRequestMappingDerivedClass(method);
 
                                 // 只解析 `RequestMapping`及其派生注解声明的方法
                                 if (methodRequestMapping != null) {
@@ -71,4 +81,20 @@ public class ControllerUrlService {
     }
 
 
+    private RequestMapping getRequestMappingDerivedClass(Method method){
+        RequestMapping requestMapping = method.getAnnotation(RequestMapping.class);
+        if (requestMapping == null) {
+            // 尝试从 `RequestMapping` 派生注解中获取 `RequestMapping` 注解
+            for (Class aClass : REQUESTMAPPING_DERIVED) {
+                Annotation annotation = method.getAnnotation(aClass);
+                if (annotation != null) {
+                    // 从`RequestMapping`派生注解上获取 `RequestMapping`注解
+                    requestMapping = AnnotationUtils.findAnnotation(annotation.getClass(), RequestMapping.class);
+                    return requestMapping;
+                }
+            }
+        }else{
+            return requestMapping;
+        }
+    }
 }
