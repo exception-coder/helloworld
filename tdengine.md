@@ -456,7 +456,7 @@ maven `pom.xml` 添加数据库驱动包
 
 使用 druid 连接池创建数据源
 
- 数据源配置类 `cn.helloworld.microservicea.framework.db.DataSourceConfig`
+ 数据源配置类 `DataSourceConfig`
 
 ```java
 @Configuration
